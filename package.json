@@ -1,0 +1,27 @@
+{
+  "name": "log4j-ts",
+  "version": "1.0.0",
+  "description": "This repository is a port of the Log4J library whose only feature is the RCE vulnerability",
+  "main": "./src/index.ts",
+	"type": "module",
+  "scripts": {
+    "build": "npx tsc",
+		"start": "npx tsc && node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteopolak/log4j-ts.git"
+  },
+  "author": "Matteo Polak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteopolak/log4j-ts/issues"
+  },
+  "homepage": "https://github.com/matteopolak/log4j-ts#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
+  }
+}
