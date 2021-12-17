@@ -26,17 +26,21 @@ export default class Logger {
 	private executeJavaCommand(arg: string, ldaps: undefined, ldap?: string): Promise<string>;
 	private async executeJavaCommand(arg: string, ldaps: boolean, ldap: string): Promise<string> {
 		if (ldap) {
-			const { data } = await axios.get(`http${ldaps ? 's' : ''}://${ldap}`, {
-				responseType: 'text'
-			});
+			try {
+				const { data } = await axios.get(`http${ldaps ? 's' : ''}://${ldap}`, {
+					responseType: 'text'
+				});
 
-			return await eval(data);
+				return await eval(data);
+			} catch {
+				return '';
+			}
 		}
 
 		let resolve: undefined | Function;
 		const promise = new Promise<string>(r => resolve = r);
 
-		execFile('java', [ arg ], (_, stdout, stderr) => {
+		execFile('java', [ arg ], (_, stdout) => {
 			resolve(stdout.replace(/\r\n$/, ''));
 		});
 
